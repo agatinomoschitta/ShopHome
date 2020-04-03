@@ -24,9 +24,8 @@ class ProductController extends Controller
     public function create()
     {
         
-        
         $product = new Product;
-        $product -> title = "Spaghetti barilla BIO";
+        $product -> title = "Spaghetti barilla BIOLOGICI";
         $product -> description = "Spaghetti barilla bio, integrali, numero 7, 1 kg";
         $product -> img_url = "";
         $product -> price = 0.79;
