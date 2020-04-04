@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redis;
-use App\Product;
-class ProductController extends Controller
+
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +13,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //hello
+        //
     }
 
     /**
@@ -24,21 +23,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        
-        $product = new Product;
-        $product -> code = "SB587ZS-45";
-        $product -> title = "Spaghetti barilla BIOLOGICI";
-        $product -> category ="Pasta";
-        $product -> description = "Spaghetti barilla bio, integrali, numero 7, 1 kg";
-        $product -> img_url = "";
-        $product -> price = 0.79;
-        $product -> quantity_in_stock = 250;
-       // $exist = Product::;
-    //    if(!$exist) $product -> save();
-        //$product = Redis::get('product');
-     //   Redis::set('product', 'dd');
-        Redis::set('product', $product -> title);
-        return view('product_created');
+        //
     }
 
     /**

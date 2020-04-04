@@ -22,10 +22,8 @@ class OrderRow extends Migration
             $table->timestamp('updated_at')->useCurrent();
             
             $table->primary(array('productID', 'orderID'));
-            $table->index('productID');
-            $table->index('orderID');
-            $table->foreign('productID')->references('code')->on('products');
-            $table->foreign('orderID')->references('orderID')->on('orders');
+            $table->index(array('productID', 'orderID'));
+            
             
         });
     }
@@ -37,6 +35,6 @@ class OrderRow extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('orderrows');
     }
 }
