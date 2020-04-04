@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::resource('products', 'ProductController');
 Route::resource('orders', 'ProductController');
 Route::resource('users', 'ProductController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');
