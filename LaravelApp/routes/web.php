@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
     
     
 Route::resource('products', 'ProductController');
-Route::resource('orders', 'ProductController');
-Route::resource('users', 'ProductController');
+Route::resource('orders', 'OrderController');
+Route::resource('users', 'UserController');
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+Route::resource('/home', 'HomeController');

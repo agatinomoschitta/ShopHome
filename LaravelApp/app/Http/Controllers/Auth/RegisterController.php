@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
+use Illuminate\Http\Request;
 class RegisterController extends Controller
 {
     /*
@@ -40,7 +41,10 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
-
+    public function username()
+    {
+        return 'contactNumber';
+    }
     /**
      * Get a validator for an incoming registration request.
      *
@@ -51,7 +55,13 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'surname' => ['required', 'string', 'max:255'],   
+            'address' => ['required', 'string', 'max:255'],
+            'country' => ['required', 'string', 'max:255'],   
+            'cap' => ['required', 'string', 'max:255'],
+            'city' => ['required', 'string', 'max:255'],   
+            'state' => ['required', 'string', 'max:255'],  
+            'contactNumber' => ['required', 'string', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -66,8 +76,21 @@ class RegisterController extends Controller
     {
         return User::create([
             'name' => $data['name'],
-            'email' => $data['email'],
+            'contactNumber' => $data['contactNumber'],
+            'surname' => $data['surname'],
+            'address' => $data['address'],
+            'country' => $data['country'],
+            'cap' => $data['cap'],
+            'city' => $data['city'],
+            'state' => $data['state'],
             'password' => Hash::make($data['password']),
         ]);
     }
+    
+    protected function registered(Request $request, $user)
+    {
+       return "utente registrato!";
+    }
+    
+
 }
