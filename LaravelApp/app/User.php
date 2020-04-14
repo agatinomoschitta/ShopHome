@@ -12,6 +12,7 @@ class User extends Model implements Authenticatable, CanResetPasswordContract
 {
     use \Illuminate\Notifications\Notifiable;
     use AuthenticableTrait, CanResetPassword;
+    protected $primaryKey = 'contactNumber';
     protected $fillable = ['name', 
         'contactNumber', 
         'password', 
@@ -21,4 +22,9 @@ class User extends Model implements Authenticatable, CanResetPasswordContract
         'country', 
         'city', 
         'state'];
+    
+    public function getRouteKeyName()
+    {
+        return 'name';
+    }
 }

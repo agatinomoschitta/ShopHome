@@ -1,0 +1,119 @@
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+
+.header{
+ 	  background-color: #ffffff !important;
+	  border-style: solid;
+ 	  border-width: 1px;
+ 	  border-color: #dddddd;
+ 	  line-height: 70px;
+}
+.header > .column{
+	  vertical-align: middle;
+ 	  padding: 15px 15px;
+ 	  margin: auto;
+ 	  text-align: center;
+ 	  overflow: auto;
+ 	  
+}
+#search_container{
+}
+#search_container > form{
+	width:100%;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#search_container > form >input{
+	width:80%;
+	height:35px;
+	padding: 10px 10px;
+	font: 12px Poppins;
+}
+
+#search_container > form > button{
+	float:right;
+	width:20%;
+	height:35px;
+	display: flex;
+	background-color: rgb(230, 46, 4);
+	border:none;
+    justify-content: center;
+    align-items: center;
+}
+#search_container > form > button:hover{
+	background-color: rgb(207, 41, 4);
+}
+#search_container > form > button >img{
+	width:20px;
+}
+#cart_container{
+	font: 17px Poppins;
+	color: rgb(86, 86, 86);
+    justify-content: center;
+    align-items: center;
+}
+#cart_container a{
+		color: rgb(86, 86, 86);
+		text-decoration: none;
+		font: 14px Poppins;
+}
+#cart_container a:hover{
+		color: rgb(230, 46, 4);
+}
+#cart_container a:visited{
+	
+	color: rgb(86, 86, 86);
+	text-decoration: none; 
+}
+#cart_container  img{
+	width: 30px;
+	height: 30px;
+}
+#cart_container  #num-cart{
+width: 18px;
+    height: 18px;
+    background: #e62e04;
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    color: #fff;
+    text-align: center;
+    line-height: 18px;
+    border-radius: 100%;
+    font: 12px Poppins;
+}
+.header > .column > #logo{
+	 width: 150px;
+}
+
+
+
+
+
+
+
+/* Small devices (tablets, 728px and up) */
+@media screen and (max-width: 728px) {
+	 .header{	  	  
+	 	  border-style: solid;
+	  	  border-width: 1px;
+	  	  border-color: #dddddd;
+	  	  line-height: 25px;
+	 }
+	 .header > .column{
+	      display: inline-block;
+	 	  vertical-align: middle;
+	  	  padding: 15px 15px;
+	  	  margin: auto;
+	  	  text-align: center;
+	  	  overflow: auto;
+	 }
+	.header > .column > img{
+		 width: 120px;
+	}
+}
+
+
+

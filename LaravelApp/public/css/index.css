@@ -1,0 +1,109 @@
+.product-container{
+	width: 200px;
+	height: 300px;
+  transition: transform .5s ease;
+ float: left;
+ margin: 10px;
+ 
+	overflow: hidden;
+}
+.product-container:hover{
+     
+
+}
+a {
+	text-decoration:none;
+}
+.title a{
+  text-decoration:none;
+  color: #333;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden; 
+  width: 100%;
+  font: 13px Poppins;
+  font-weight: bold;
+}
+.title:hover a{
+	color: rgb(230, 46, 4);
+}
+.category{
+  text-overflow: ellipsis;
+  overflow: hidden; 
+  width: 100%;
+  font: 10px Poppins;
+  white-space: nowrap;
+	
+}
+.row_price{
+	
+  display: inline-block;
+}
+.price{
+  font: 13px Poppins;
+  display:inline;
+  font-weight: 100 !important;
+  text-decoration: line-through;
+  color: #666666 !important;
+  white-space: nowrap;
+}
+.scounted{
+	
+	display:inline;
+  font: 13px Poppins;
+  font-weight: 100 !important;
+  color: #666666 !important;
+  white-space: nowrap;
+}
+.product-container .overlay a {
+	text-decoration:none;
+	color: #ffffff !important;
+	font: 10px Poppins;
+}
+/* Quick-zoom Container */
+.img-hover-zoom--quick-zoom > a > img {
+  transition: transform .25s, visibility .25s ease-in;
+}
+.product-container:hover .overlay{
+	  opacity: 1;
+	  visibility: visible;
+}
+.product-container  img {
+  object-fit: cover;
+  object-position: center; 
+  height: 200px;
+  width: 100%;
+}
+.product-container  img:hover {
+  transform: scale(1.2);
+  
+}
+.product-container  .overlay{
+	width:100%;
+	position: relative;
+    background-color: rgb(230, 46, 4);
+	top: -30px;
+	opacity: 0;
+	padding: 7px 7px 7px 7px;
+	visibility: hidden;
+	text-align:center;
+	color: #ffffff !important;
+	font: 12px Poppins;
+}
+.product-container  .overlay  img{
+	width:15px;
+	height: 15px;
+}
+@media screen and (max-width: 900px) {
+	.product-container{
+		width: 40%;
+		height: 300px;
+		float:left;
+	}
+}
+@media screen and (max-width: 600px) {
+	.product-container{
+		width: 100%;
+		height: 300px;
+	}
+}

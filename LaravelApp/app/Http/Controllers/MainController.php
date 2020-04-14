@@ -1,14 +1,41 @@
 <?php
+
 namespace App\Http\Controllers;
-use Facade\FlareClient\View;
-use Illuminate\Contracts\Validation\Validator;
+
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
-use Symfony\Component\Console\Input\Input;
-class UserController extends Controller
+use Illuminate\Support\Facades\Redis;
+use App\Product;
+class MainController extends Controller
 {
-    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $products=Product::orderBy('created_at', 'DESC')->get();
+
+        $items=array("1","2");
+        return view('pages.index',["cart_items" => sizeof($items), 
+            "products" => $products
+//             "user" => $_SESSION['user']
+        ]);
+    }
+    public function search()
+    {
+        return "cerco";
+    }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -26,17 +53,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($user)
+    public function show($id)
     {
-        
-        $items=array("1","2");
-        return view('pages.profile',["cart_items" => sizeof($items)]);
+        //
     }
-    public function showProfile()
-    {
-        $items=array("1","2");
-        return view('pages.profile', ['cart_items' => sizeof($items), 'user' => Auth::user()]);
-    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -70,11 +91,4 @@ class UserController extends Controller
     {
         //
     }
-    public function profilo(){
-    }
-    public function saveprofilo(Request $request){
-        return "hello";
-    }
-    
-    
 }

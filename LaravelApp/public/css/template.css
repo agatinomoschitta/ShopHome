@@ -1,0 +1,40 @@
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+
+html *
+{
+	
+   font-family: Poppins;
+   color: #333;
+}
+.icon{
+	width: 15px;
+	height: 15px;
+}
+body{
+	background-color: #fdfdfd !important;
+}
+.section{
+	background-color: #ffffff !important;
+}
+.section  .section_title{
+	color: rgb(230, 46, 4);
+	font: 22px Poppins;
+	text-transform: uppercase;
+}
+.tab-row {
+    display: table !important;
+    width: 100% !important;
+}
+@media screen and (max-width: 600px) {
+	.padding {
+	    padding-left: 20px !important;
+	    padding-right: 20px !important;
+	}
+}
+
+	.padding {
+	    padding-left: 80px !important;
+	    padding-right: 80px !important;
+	}

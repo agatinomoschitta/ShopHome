@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = "http://localhost:8000/";
 
     /**
      * Create a new controller instance.
@@ -45,7 +45,8 @@ class LoginController extends Controller
     {
         return 'contactNumber';
     }
-    
+ 
+
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -53,14 +54,9 @@ class LoginController extends Controller
     
     protected function authenticated(Request $request, $user)
     {
-        if(Auth::guest())
-        {
-            return "devi fare il login";
-        }
-        else return "sei autenticato!";
+//         $_SESSION['user']= Auth::user();
     }
     protected function loggedOut(Request $request)
     {
-        return "<a href=./home>Sloggato, vai all'home!</a>";
     }
 }

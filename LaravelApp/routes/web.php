@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Route;
 
     
     
-Route::resource('products', 'ProductController');
-Route::resource('orders', 'OrderController');
-Route::resource('users', 'UserController');
+Route::resource('products', 'ProductController')->middleware('auth');
+Route::resource('orders', 'OrderController')->middleware('auth');
+Route::get('users/profilo', 'UserController@showProfile');
 Auth::routes();
 
-Route::resource('/home', 'HomeController');
+Route::resource('/', 'MainController');
