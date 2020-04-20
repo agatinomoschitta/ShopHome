@@ -5,7 +5,8 @@
 @endsection
 @section('profile')
 	<div class="form-container">
-	<form class="profile" method="post" action="/users/saveprofilo">
+	<form class="profile" method="post" action="save" onSubmit="return save()">
+		@csrf
         <div class="row">
           <div class="col-xs-12 col-md-6 column" >
             <p>Nome:</p>
@@ -47,5 +48,5 @@
 	</div>
 @endsection
 @section('script_page')
-
+<script type="text/javascript" src="{{asset('js/profilo.js')}}"></script>
 @endsection

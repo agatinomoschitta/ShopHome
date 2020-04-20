@@ -89,7 +89,8 @@ class RegisterController extends Controller
     
     protected function registered(Request $request, $user)
     {
-       return "utente registrato!";
+        $items=array("1","2");
+        return view('pages.successmessage', ['cart_items' => sizeof($items), 'message' => "Il tuo account è stato creato"]);
     }
     
 

@@ -51,10 +51,13 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-    
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        return "Username o password errate";
+    }
     protected function authenticated(Request $request, $user)
     {
-//         $_SESSION['user']= Auth::user();
+        return "ok";
     }
     protected function loggedOut(Request $request)
     {

@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Route;
     
 Route::resource('products', 'ProductController')->middleware('auth');
 Route::resource('orders', 'OrderController')->middleware('auth');
-Route::get('users/profilo', 'UserController@showProfile');
+Route::get('users/profilo', 'UserController@showProfile')->middleware('auth');
+Route::get('users/create', 'UserController@create');
+Route::post('users/save', 'UserController@save')->middleware('auth');;
 Auth::routes();
 
 Route::resource('/', 'MainController');

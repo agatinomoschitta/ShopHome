@@ -19,7 +19,11 @@ class UserController extends Controller
     {
         //
     }
-
+    public function create(){
+        
+        $items=array("1","2");
+        return view('pages.registration', ['cart_items' => sizeof($items), 'user' => Auth::user()]);
+    }
     /**
      * Display the specified resource.
      *
@@ -72,8 +76,31 @@ class UserController extends Controller
     }
     public function profilo(){
     }
-    public function saveprofilo(Request $request){
-        return "hello";
+    public function save(Request $request){
+        $user = Auth::user();
+        
+        
+        /**
+         * Validate request/input
+         **/
+        
+        /**
+         * storing the input fields name & email in variable $input
+         * type array
+         **/
+        $input = $request->except('contactNumber', 'password');
+        
+        
+        
+        /**
+         * Accessing the update method and passing in $input array of data
+         **/
+        $user->update($input);
+        
+        /**
+         * after everything is done return them pack to /profile/ uri
+         **/
+        return back();
     }
     
     

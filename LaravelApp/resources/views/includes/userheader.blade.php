@@ -57,14 +57,16 @@
 <div id="overlay">
   <div id="login">
   	<div id="title">Esegui l'accesso <button id="close" onClick="off()">X</button></div>
-    	<form method="POST" action="{{ route('login') }}" class="login-form">
+    	<form method="POST" action="{{ route('login') }}" onSubmit="return login()"  class="login-form" id="login-form">
 			@csrf
-    		<input name="contactNumber" type="number"  placeholder="Numero di telefono" value="{{ old('contactNumber') }}"><br>
+    		<input name="contactNumber" type="number"  placeholder="Numero di telefono" value="{{ old('contactNumber') }} " required autocomplete="current-password"><br>
     		<input name="password" type="password"  placeholder="Password" required autocomplete="current-password"><br>
+    		<div id="result_mex_container"></div>
     		<button type="submit">Accedi</button>
     		<a id="forgot" href="#forgot">Password dimenticata?</a>
-    		<a id="create_account" href="#create">Crea un account</a>
-    	</form>
+    		<a id="create_account" href="http://www.localhost:8000/users/create">Crea un account</a>
+		</form>
+		<!--action=""-->
   </div>
 </div>
 @endsection

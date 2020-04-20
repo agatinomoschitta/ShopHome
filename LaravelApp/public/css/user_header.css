@@ -178,3 +178,32 @@
 #login #create_account:hover{
 	color: #e62e04;
 }
+#result_mex_container{
+	width: 360px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-top:5px;
+	background-color: #fa8072;
+	border-color: #ed2939;
+	font: 12px Poppins;
+	padding-left:10px;
+	color:#fff;
+	visibility: hidden;
+	margin-left:20px;
+	margin-right:20px;
+}
+#result_mex_container[active="true"]{
+	width: 360px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin-top:5px;
+	background-color: #fa8072;
+	border-color: #ed2939;
+	font: 12px Poppins;
+	padding-left:10px;
+	color:#fff;
+	visibility: visible;
+	margin-left:20px;
+	margin-right:20px;
+}
+
