@@ -13,8 +13,10 @@ use Illuminate\Support\Facades\Route;
 */
 
     
-    
+
 Route::resource('products', 'ProductController')->middleware('auth');
+Route::post('addCart', 'ProductController@addCart');
+Route::get('cart', 'OrderController@showCart');
 Route::resource('orders', 'OrderController')->middleware('auth');
 Route::get('users/profilo', 'UserController@showProfile')->middleware('auth');
 Route::get('users/create', 'UserController@create');

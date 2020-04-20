@@ -107,3 +107,97 @@ a {
 		height: 300px;
 	}
 }
+
+
+
+
+#cart-overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+}
+#cart-container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 50px;
+  color: white;
+  width:400px;
+  height:20%;
+  background-color: #fff;
+  transform: translate(-50%,-50%);
+  -ms-transform: translate(-50%,-50%);
+}
+#cart-container > #title{
+	font: 17px Poppins;
+	color: #333;
+	text-align: center;
+	margin: 20px;
+}
+#cart-container > #title > #close{
+	float:right;
+	margin-right: 10px;
+	    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    font-weight: bold;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+}
+#cart-container > #title > #close:hover{
+	float:right;
+	margin-right: 10px;
+	    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    outline:none;
+    color: #E62E04;
+}
+#cart-container #continue{
+	float: left;
+	margin-top: 5px;
+	margin-left: 20px;
+  text-decoration: none;
+  font: 12px Poppins;
+  color: #fff;
+  padding: 5px;
+  text-align: center;
+  background-color: rgb(230, 46, 4);
+  width:40%;
+}
+#cart-container #checkout:hover{
+    background-color: rgb(207, 41, 4);
+}
+#cart-container #continue:hover{
+    background-color: rgb(207, 41, 4);
+}
+#cart-container #checkout{
+	margin-top: 5px;
+	margin-right: 20px;
+	text-decoration: none;
+  font: 12px Poppins;
+  color: #fff;
+  padding: 5px;
+  text-align: center;
+  float: right;
+  background-color: rgb(230, 46, 4);
+  width:40%;
+}
+#cart-container #forgot:hover{
+	color: #e62e04;
+}
+
+#cart-container #create_account:hover{
+	color: #e62e04;
+}

@@ -81,4 +81,8 @@ class OrderController extends Controller
     {
         //
     }
+    
+    public function showCart(){
+        return "benvenuto";
+    }
 }

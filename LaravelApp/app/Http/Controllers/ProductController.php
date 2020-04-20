@@ -40,7 +40,17 @@ class ProductController extends Controller
         Redis::set('product', $product -> title);
         return view('product_created');
     }
-
+    public function addCart(Request $request){
+        $code=$request->input("p_code");
+        $product = Product::findOrFail($code);
+        $productList = json_decode(Redis::get("cart"));
+        
+        if(!is_array($productList))
+            $productList=array();
+         array_push($productList, $product);
+         Redis::set("cart", json_encode($productList));
+        return "ok";
+    }
     /**
      * Store a newly created resource in storage.
      *

@@ -38,6 +38,10 @@
     	@yield('script_slider')
     	@yield('script_footer')
         @yield('script_page')
+        
+
+        
     	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    	<script src="{{asset('js/utils.js')}}"></script>
     </body>
 </html>
