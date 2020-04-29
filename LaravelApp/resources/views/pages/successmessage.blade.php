@@ -19,7 +19,7 @@
 @endsection
 @section('content')
 	<div id="message-container">
-		Il tuo account e' stato creato con successo
+		La procedura e' stata completata con successo
 	</div>
 @endsection
 @section('script_page')

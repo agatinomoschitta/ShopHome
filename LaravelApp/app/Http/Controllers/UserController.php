@@ -5,7 +5,11 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Redis;
 use Symfony\Component\Console\Input\Input;
+use App\Order;
+use App\Orderrows;
+use App\Product;
 class UserController extends Controller
 {
     
@@ -33,13 +37,61 @@ class UserController extends Controller
     public function show($user)
     {
         
-        $items=array("1","2");
-        return view('pages.profile',["cart_items" => sizeof($items)]);
+        $cart=json_decode(Redis::get("cart"));
+        return view('pages.profile',["cart_items" => sizeof($cart)]);
     }
     public function showProfile()
     {
-        $items=array("1","2");
-        return view('pages.profile', ['cart_items' => sizeof($items), 'user' => Auth::user()]);
+        $cart=json_decode(Redis::get("cart"));
+        return view('pages.profile', ['cart_items' => sizeof($cart), 'user' => Auth::user()]);
+    }
+    
+    public function showOrdini()
+    {
+        $order=Order::
+        join('users','orders.contactNumber','users.contactNumber')
+        ->get();
+        
+        return view('pages.dashboard_ordini', ['user' => Auth::user(),
+            'order' => $order
+        ]);
+    }
+    public function showDetails($id)
+    {
+        $or=Orderrows::
+        join("products","orderrows.productID","products.code")
+        ->orderBy('orderrows.created_at', 'DESC')
+        ->get();
+        $dd=array();
+        for($i=0;$i<sizeof($or); $i++){
+            if($or[$i]->orderID==$id)
+                array_push($dd,$or[$i]);
+        }
+        return view('pages.dashboard_ordini_details', ['user' => Auth::user(),
+            'rows' => $dd
+        ]);
+    }
+    public function details($id)
+    {
+        $or=Orderrows::
+        join("products","orderrows.productID","products.code")
+        ->where("orderrows.orderID",$id)
+        ->orderBy('orderrows.created_at', 'DESC')
+        ->get();
+        $dd=array();
+        for($i=0;$i<sizeof($or); $i++){
+            if($or[$i]->orderID==$id)
+                array_push($dd,$or[$i]);
+        }
+        $cart=json_decode(Redis::get("cart"));
+        return view('pages.orderdetail', ['user' => Auth::user(),
+            'rows' => $dd, 'cart_items'=>sizeof($cart)
+        ]);
+    }
+    public function showProdotti()
+    {
+        $or=Product::orderBy('created_at', 'DESC')->get();
+        return view('pages.dashboard_prodotti', ['user' => Auth::user(), 'rows'=> $or]);
     }
     /**
      * Show the form for editing the specified resource.

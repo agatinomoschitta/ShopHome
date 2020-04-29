@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 use App\Product;
+use App\Categorie;
+use Redirect;
+use Illuminate\Support\Facades\Auth;
 class ProductController extends Controller
 {
     /**
@@ -51,6 +54,105 @@ class ProductController extends Controller
          Redis::set("cart", json_encode($productList));
         return "ok";
     }
+    public function delete($id){
+        Product::where('code', '=', $id)->delete();
+        $or=Product::orderBy('created_at', 'DESC')->get();
+        return Redirect::intended("http://localhost:8000/prodotti");
+    }
+    public function newproduct(){
+        
+        $category=Categorie::all();
+        return view('pages.dashboard_prodotti_new', ['user' => Auth::user(), 'categorie'=>$category]);
+    }
+    public function categoryAdd(Request $request){
+        $request->validate([
+            'categoryID' => 'required|max:255',
+            'description' => 'required'
+        ]);
+        $product =new Categorie;
+        $product ->categoryID=$request->input("categoryID");
+        $product ->description=$request->input("description");
+        $product->save();
+        return Redirect::intended("http://localhost:8000/prodotti");
+    }
+    public function newcategory(){
+        
+        $category=Categorie::all();
+        return view('pages.dashboard_category_new', ['user' => Auth::user(), 'categorie'=>$category]);
+    }
+    public function edit($code){
+        $product=Product::findOrFail($code);
+        $category=Categorie::all();
+        return view('pages.dashboard_prodotti_edit', ['user' => Auth::user(), 'product'=>$product, 'categorie'=>$category]);
+    }
+    public function add(Request $request){
+        $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required',
+            'category' => 'required',
+            'price' => 'required',
+            'quantity' => 'required',
+        ]);
+        try{
+            $file = $request->file('image');
+            if($file){
+                $hash = md5_file($file->path());
+                $file->move(public_path('product_images'),$hash.".".$file->getClientOriginalExtension());
+                $url="product_images/".$hash.".".$file->getClientOriginalExtension();
+            }else $url="none";
+        } catch (Exception $e) {
+            $url="none";
+        }
+        $product =new Product;
+        $product ->code= "ES".rand(1234,999)."-S";
+        $product-> title=$request->input("title");
+        $product-> description=$request->input("description");
+        $product-> img_url=$url;
+        $product-> category=$request->input("category");
+        $product-> price=$request->input("price");
+        $product-> quantity_in_stock=$request->input("quantity");
+        $product->save();
+        return Redirect::intended("http://localhost:8000/prodotti");
+    }
+    
+    public function saveProduct(Request $request){
+        $request->validate([
+            'title' => 'required|max:255',
+            'description' => 'required',
+            'category' => 'required',
+            'price' => 'required',
+            'quantity' => 'required',
+        ]);
+        try{
+            $file = $request->file('image');
+            if($file){
+                $hash = md5_file($file->path());
+                $file->move(public_path('product_images'),$hash.".".$file->getClientOriginalExtension());
+                $url="product_images/".$hash.".".$file->getClientOriginalExtension();
+            }else $url="none";
+        } catch (Exception $e) {
+           $url="none";
+        }
+        if($url=="none")
+            Product::where('code', $request->input("code"))
+            ->update(['title' => $request->input("title"),
+                'description' => $request->input("description"),
+                'category' => $request->input("category"),
+                'price' => $request->input("price"),
+                'quantity_in_stock' => $request->input("quantity"),
+            ]);
+            else
+                Product::where('code', $request->input("code"))
+                ->update(['title' => $request->input("title"),
+                    'description' => $request->input("description"),
+                    'img_url' => $url,
+                    'category' => $request->input("category"),
+                    'price' => $request->input("price"),
+                    'quantity_in_stock' => $request->input("quantity"),
+                ]);
+        return Redirect::intended("http://localhost:8000/prodotti");
+    }
+   
     /**
      * Store a newly created resource in storage.
      *
@@ -79,10 +181,7 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.

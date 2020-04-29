@@ -12,20 +12,17 @@
 @section('top_menu')
 <div class="topnav padding" id="myTopnav">
   <a href="/" class="active">Home</a>
-  <a href="javascript:void(0)">News</a>
-  <a href="javascript:void(0)">Contact</a>
-  <div class="dropdown">
-    <button class="dropbtn">Dropdown 
-      <i class="fa fa-caret-down"></i>
-    </button>
-    <div class="dropdown-content">
-      <a href="javascript:void(0)">Link 1</a>
-      <a href="javascript:void(0)">Link 2</a>
-      <a href="javascript:void(0)">Link 3</a>
-    </div>
-  </div> 
-  <a href="javascript:void(0)">About</a>
-  <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">☰</a>
+  @if(!Auth::check())
+    <a href="javascript:void(0)">Contatti</a>
+  @else 
+  	@if(Auth::user()->role == 1)
+      	<a href="javascript:void(0)">Ordini</a>
+      	<a href="javascript:void(0)">Nuovo prodotto</a>
+    @else
+      	<a href="http://localhost:8000/order">I miei ordini</a>
+      	<a href="javascript:void(0)">Contatti</a>
+    @endif
+  @endif
 </div>
 @endsection
 

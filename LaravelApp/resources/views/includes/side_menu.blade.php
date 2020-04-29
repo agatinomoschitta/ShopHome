@@ -13,28 +13,26 @@
 	<div class="menu">
 		<div id="title">CATEGORIE</div>
 		<ul class="fa-ul">
-			<li><img src="{{asset('img/ic_pasta.png')}}"/><a href="#">Pasta riso e cereali</a>
+			<li><img src="{{asset('img/ic_pasta.png')}}"/><a href="http://localhost:8000/filter/Pasta">Pasta riso e cereali</a>
 				<ul>
-					<li><a href="#">Pasta secca</a></li>
-					<li><a href="#">Pasta fresca</a></li>
-					<li><a href="#">Riso e cereali</a></li>
+					<li><a href="http://localhost:8000/filter/Pasta">Pasta secca</a></li>
+					<li><a href="http://localhost:8000/filter/Pasta">Pasta fresca</a></li>
+					<li><a href="http://localhost:8000/filter/Pasta">Riso e cereali</a></li>
 				</ul>
 			</li>
-			<li><img src="{{asset('img/ic_fish.png')}}"/><a href="#">Carne e pesce</a>
+			<li><img src="{{asset('img/ic_fish.png')}}"/><a href="http://localhost:8000/filter/Pesce">Pesce</a>
 				<ul>
-					<li><a href="#">Manzo e vitello</a></li>
-					<li><a href="#">Pollo e tacchino</a></li>
-					<li><a href="#">Pesce</a></li>
-					<li><a href="#">Crostacei</a></li>
-					<li><a href="#">Molluschi</a></li>
+					<li><a href="http://localhost:8000/filter/Pesce">Pesce</a></li>
+					<li><a href="http://localhost:8000/filter/Pesce">Crostacei</a></li>
+					<li><a href="http://localhost:8000/filter/Pesce">Molluschi</a></li>
 				</ul>
 			</li>
-			<li><img src="{{asset('img/ic_cheese.png')}}"/><a href="#">Formaggi e latticini</a>
+			<li><img src="{{asset('img/ic_cheese.png')}}"/><a href="http://localhost:8000/filter/Formaggio">Formaggi e latticini</a>
 				<ul>
-					<li><a href="#">Formaggi</a></li>
-					<li><a href="#">Latte</a></li>
-					<li><a href="#">Yougurt</a></li>
-					<li><a href="#">Latticini</a></li>
+					<li><a href="http://localhost:8000/filter/Formaggio">Formaggi</a></li>
+					<li><a href="http://localhost:8000/filter/Formaggio">Latte</a></li>
+					<li><a href="http://localhost:8000/filter/Formaggio">Yougurt</a></li>
+					<li><a href="http://localhost:8000/filter/Formaggio">Latticini</a></li>
 				</ul>
 			</li>
 			<li><img src="{{asset('img/ic_fruit.png')}}"/><a href="#">Frutta e verdura</a>

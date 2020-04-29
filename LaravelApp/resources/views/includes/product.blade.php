@@ -1,5 +1,5 @@
  <div class="product-container img-hover-zoom--quick-zoom">
-	 <a href="#product" ><img src="{{$product->img_url}}"/></a>
+	 <a href="#product" ><img src="http://localhost:8000/{{$product->img_url}}"/></a>
 	<div class="overlay">
 		<form method="post" action="addCart" onSubmit="return addCart('{{$product->code}}');">
 		@csrf

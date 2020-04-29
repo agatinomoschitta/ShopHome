@@ -12,8 +12,8 @@
   </div>
   <div class="col-xs-6 col-md-6 column" >
 	<div id="search_container">
-		<form method="get" action="/search">
-			<input name="input" type="text" placeholder="search...">
+		<form action="search" method="get" onSubmit="return search()">
+			<input id="title_search" name="title" type="text" placeholder="search...">
 			<button type="submit">
 				<img src="{{asset('img/ic_search.png')}}"/>
 			</button>
@@ -22,7 +22,7 @@
   </div>
   <div class="col-xs-6 col-md-3 column" >
       	<div id="cart_container">
-      		<a href="./cart">
+      		<a href="http://localhost:8000/cart">
           		Il tuo carrello
           		<img src="{{asset('img/ic_cart.png')}}"/>
           		<div id="num-cart">
@@ -36,5 +36,5 @@
 </div>
 @endsection
 @section('script_header')
-
+<script type="text/javascript" src="{{asset('js/header.js')}}"></script>
 @endsection

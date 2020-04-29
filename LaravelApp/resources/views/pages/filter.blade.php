@@ -34,7 +34,7 @@
         </div>
         <div class="row">
           <div class="col-md-12 column" >
-        	  @for ($i = 0; $i < sizeof($products); $i++)   		
+        	  @for ($i = sizeof($products)-1; $i >= sizeof($products)-4 && $i>=0; $i--)   		
     			@include('includes.product', ["product" => $products[$i]])
     		 @endfor		
           </div>
