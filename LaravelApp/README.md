@@ -1,79 +1,46 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# Shop home
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+Shop home è un prototipo di web application sviluppato utilizzando il framework Laravel, che permette agli utenti di effettuate la spesa in un supermercato virtuale. L'utente può quindi svogliare i prodotti a catalogo, cercarli e filtrarli per categoria. Può quindi aggiungerli ad un carrello e procedere ad eseguire il checkout. Idealmente il supermercato consegnerà appena possibile, la spesa presso il domicilio indicato dall'utente.
 
-## About Laravel
+# Installazione del portale
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Per poter installare il portale, è necessario eseguire l'upload di tutto il progetto su un server con installato Apache. Quindi è necessario inserire modificare i dati di accesso al database MySql all'interno del file database.php all'interno della cartella "config" sulla root del progetto. Il portale utilizza inoltre il database "Redis" per la gestione del carrello. Per il corretto funzionamento, è quindi necessario installare e avviare un server Redis. E' quindi necessario, inserire i dati di accesso al server redis all'interno della sezione redis del file database.php. Per costruire il database iniziale è necessario eseguire il comando "php artisan make:migration" a partire dalla root del progetto. Verranno quindi utilizzati i file di migrazione .php all'interno del percorso database/migration per costruire il database di cui necessita il portale. In alternativa è possibile importare manualmente il database dal pannello di amministrazione del database, utilizzando il file database.sql individuabile sulla root del progetto.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+# Architettura
+## I controller
+Il progetto è sviluppato con rigoroso rispetto del design pattern MVC. Sono presenti 12 controller, 6 all'interno del percorso app/http/controllers e altri 6 in app/http/controllers/auth.
+- CategorieController gestisce le categorie dei prodotti: creazione, modifica, recupero generando le rispettive View.
+- MainController gestisce l'home page del sito. La visualizzazione e la navigazione tra le altre pagine web
+- OrderController gestisce gli ordini degli utenti. Creazione, consultazione, visualizzazione, ecc..
+- OrderRowController gestisce l'accesso ai singoli elementi di un ordine: creazione/modifica/cancellazione
+- ProductController in modo analogo gestisce i prodotti esistenti: creazione/modifica/cancellazione
+- UserController gestisce l'account utente: login, logout, profilo ecc...
+## I model
+Gli oggetti contenenti i dati primitivi utilizzati dal portale (sono anche i Data Access Object al database) sono i seguenti, individuali all'interno del percorso "App":
+- Categorie
+- Order
+- OrderRows
+- Product
+- User
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Le View
+Le View che corrispondono alle pagine web o a singoli elementi costruiti con HTML/CSS/JS. Sono localizzate all'interno del percorso "resources/views" e si dividono in 1. "includes" elementi da poter includere nelle pagine (menu, header, user bar, ecc...). 2. pages, ovvero le pagine web richiamate dai controller e che a loro volta utilizzano le view costruisce all'interno di "includes" 3. I layout, nel nostro caso uno, che definisce la struttura della pagina web per tutte le pagine e include i componenti usati da tutto il progetto: bootstrap, jquery, ecc..
 
-## Learning Laravel
+## Gli oggetti TypeScript
+Gli oggetti in Javascript presenti in "public/js" sono generati dagli oggetti scritti in TypeScript presenti in "public/ts". Chiunque voglia usufruire della potenza di TypeScript può modificare o aggiungere nuovi file .ts all'interno di public/ts.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## JQuery
+E' possibile utilizzare JQuery in qualsiasi pagina web del progetto, infatti è integrato a livello globale per tutte le pagine web.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Shop Home - Supporto Tecnico
 
-## Laravel Sponsors
+Per qualsiasi chiarimento tecnico sul progetto, si prega di inviare una email a: agatinomoschitta@gmail.com
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- [UserInsights](https://userinsights.com)
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-- [Invoice Ninja](https://www.invoiceninja.com)
-- [iMi digital](https://www.imi-digital.de/)
-- [Earthlink](https://www.earthlink.ro/)
-- [Steadfast Collective](https://steadfastcollective.com/)
-- [We Are The Robots Inc.](https://watr.mx/)
-- [Understand.io](https://www.understand.io/)
-- [Abdel Elrafa](https://abdelelrafa.com)
-- [Hyper Host](https://hyper.host)
-- [Appoly](https://www.appoly.co.uk)
-- [OP.GG](https://op.gg)
-- [äº‘è½¯ç§‘æŠ€](http://www.yunruan.ltd/)
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Shop Home è un open-source, rilasciato sotto licenza GNU GPL
