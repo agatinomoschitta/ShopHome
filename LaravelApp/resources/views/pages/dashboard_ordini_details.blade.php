@@ -36,7 +36,7 @@
         	  @for ($i = 0; $i < sizeof($rows); $i++)   	            	  
         		  <tr>
         		  <td width="20%">{{$rows[$i]->productID}}</td>
-        		  <td width="10%"><img src="{{$rows[$i]->img_url}}"></td>
+        		  <td width="10%"><img src="http://localhost:8000/{{$rows[$i]->img_url}}"></td>
         		  <td width="20%">{{$rows[$i]->title}}</td>
         		  <td width="10%">{{$rows[$i]->category}}</td>
         		  <td width="10%">{{$rows[$i]->quantity}}</td>
