@@ -22,7 +22,7 @@
      		<a href="http://localhost:8000/prodotti" class="voice" ><img src="{{asset('img/product.png')}}">Gestione prodotti</a>
       </div>
       <div class="col-md-10 column content-box" >
-      		 <br><a href="newproduct">Inserisci un nuovo prodotto</a>&nbsp; <a href="newcategory">Inserisci una categoria</a><br><br>
+      		 <br><a href="newproduct">Inserisci un nuovo prodotto</a>&nbsp; <a href="newcategory">Inserisci una categoria</a>&nbsp; <a href="category">Vedi categorie</a><br><br>
     			<table width="100%" align="center" >
     		  <tr>
     		  <th width="20%">Codice prodotto</th>

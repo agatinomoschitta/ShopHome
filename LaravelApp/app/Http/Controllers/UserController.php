@@ -10,6 +10,7 @@ use Symfony\Component\Console\Input\Input;
 use App\Order;
 use App\Orderrows;
 use App\Product;
+use App\Categorie;
 class UserController extends Controller
 {
     
@@ -56,6 +57,15 @@ class UserController extends Controller
             'order' => $order
         ]);
     }
+    
+    public function showCategory()
+    {
+        $order=Categorie::all();
+        
+        return view('pages.dashboard_category_delete', ['user' => Auth::user(),
+            'categorie' => $order
+        ]);
+    }
     public function showDetails($id)
     {
         $or=Orderrows::
@@ -91,6 +101,8 @@ class UserController extends Controller
     public function showProdotti()
     {
         $or=Product::orderBy('created_at', 'DESC')->get();
+        for($i=0; $i<sizeof($or); $i++)
+            $or[$i]->price=str_replace(".",",",$or[$i]->price);
         return view('pages.dashboard_prodotti', ['user' => Auth::user(), 'rows'=> $or]);
     }
     /**

@@ -62,10 +62,10 @@
                       	</select>
             			
                       	<p>Prezzo</p>
-            			<input name="price" type="text" value="{{$product->price}}">
+            			<input id="price" name="price" type="text" value="{{$product->price*100}}">
                       </div>
                       <div class="col-xs-12 col-md-6 column" >
-						<div id='clock'></div>
+						<div id='clock' style="background-image:url('http://localhost:8000/{{$product->img_url}}');"></div>
                       </div>
                       <div class="col-xs-12 col-md-12 column" >
                       	<p>Quantit&agrave;:</p>
@@ -88,15 +88,17 @@
       </div>
     </div>
 </div>
+<script type="text/javascript" src="{{asset('js/dashboard.js')}}"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="{{asset('js/jquery.priceformat.min.js')}}"></script>
+<script>
+$('#price').priceFormat({
+    prefix: '',
+    centsSeparator: ',',
+    thousandsSeparator: '.'
+});
+</script>
 @endsection
 @section('script_page')
-<script type="text/javascript" src="{{asset('js/dashboard.js')}}"></script>
-<script>
-
-function readURL(event){
-    var getImagePath = URL.createObjectURL(event.target.files[0]);
-    $('#clock').css('background-image', 'url(' + getImagePath + ')');
-   }
-</script>
 
 @endsection

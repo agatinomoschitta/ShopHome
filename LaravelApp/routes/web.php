@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::resource('products', 'ProductController')->middleware('auth');
 Route::post('addCart', 'ProductController@addCart');
-Route::post('deleteItemCart', 'OrderController@deleteItem')->middleware('auth');;
+Route::post('deleteItemCart', 'OrderController@deleteItem');
 Route::get('cart', 'OrderController@showCart');
 Route::get('order', 'OrderController@order')->middleware('auth');
 Route::get('filter/{category}', 'MainController@filter');
@@ -24,6 +24,7 @@ Route::get('search/{title}', 'MainController@search');
 Route::resource('orders', 'OrderController')->middleware('auth');
 Route::get('users/profilo', 'UserController@showProfile')->middleware('auth');
 Route::get('ordini', 'UserController@showOrdini')->middleware('auth');
+Route::get('category', 'UserController@showCategory')->middleware('auth');
 Route::get('orderdetails/{id}', 'UserController@showDetails')->middleware('auth');
 Route::get('detailorder/{id}', 'UserController@details')->middleware('auth');
 Route::get('editproduct/{id}', 'ProductController@edit')->middleware('auth');
@@ -39,6 +40,7 @@ Route::post('ordersave', 'OrderController@save')->middleware('auth');
 Route::post('productAdd', 'ProductController@add')->middleware('auth');
 Route::post('categoryAdd', 'ProductController@categoryAdd')->middleware('auth');
 Route::post('productSave', 'ProductController@saveProduct')->middleware('auth');
+Route::post('categorydelete', 'ProductController@deletecategory')->middleware('auth');
 Auth::routes();
 
 Route::resource('/', 'MainController');

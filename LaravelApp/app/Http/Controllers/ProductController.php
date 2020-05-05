@@ -82,6 +82,7 @@ class ProductController extends Controller
     }
     public function edit($code){
         $product=Product::findOrFail($code);
+        $product->price=str_replace(".",",",$product->price);
         $category=Categorie::all();
         return view('pages.dashboard_prodotti_edit', ['user' => Auth::user(), 'product'=>$product, 'categorie'=>$category]);
     }
@@ -123,11 +124,15 @@ class ProductController extends Controller
             'price' => 'required',
             'quantity' => 'required',
         ]);
+        
         try{
             $file = $request->file('image');
             if($file){
+                $date = new DateTime();
+                $hashcode=md5($request->input("code"));
+                $timestamp=md5($date->getTimestamp());
                 $hash = md5_file($file->path());
-                $file->move(public_path('product_images'),$hash.".".$file->getClientOriginalExtension());
+                $file->move(public_path('product_images'),$hashcode.$timestamp.$hash.".".$file->getClientOriginalExtension());
                 $url="product_images/".$hash.".".$file->getClientOriginalExtension();
             }else $url="none";
         } catch (Exception $e) {
@@ -138,7 +143,7 @@ class ProductController extends Controller
             ->update(['title' => $request->input("title"),
                 'description' => $request->input("description"),
                 'category' => $request->input("category"),
-                'price' => $request->input("price"),
+                'price' => str_replace(',','.', $request->input("price")),
                 'quantity_in_stock' => $request->input("quantity"),
             ]);
             else
@@ -147,12 +152,16 @@ class ProductController extends Controller
                     'description' => $request->input("description"),
                     'img_url' => $url,
                     'category' => $request->input("category"),
-                    'price' => $request->input("price"),
+                    'price' => str_replace(',','.', $request->input("price")),
                     'quantity_in_stock' => $request->input("quantity"),
                 ]);
         return Redirect::intended("http://localhost:8000/prodotti");
     }
-   
+    public function deletecategory(Request $request){
+        Categorie::where('categoryID', '=', $request->input("category"))->delete();
+        return Redirect::intended("http://localhost:8000/category");
+        
+    }
     /**
      * Store a newly created resource in storage.
      *
